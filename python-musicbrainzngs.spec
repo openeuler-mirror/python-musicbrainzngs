@@ -1,6 +1,6 @@
 Name:           python-musicbrainzngs
 Version:        0.7.1
-Release:        1 
+Release:        2
 Summary:        Python bindings for MusicBrainz NGS webservice
 
 License:        BSD and ISC
@@ -20,7 +20,7 @@ For more information on the MusicBrainz webservice see:
 Summary:        Python 3 bindings for MusicBrainz NGS webservice
 %{?python_provide:%python_provide python3-musicbrainzngs}
 BuildRequires:  python3-devel
-BuildRequires:  python3-nose
+BuildRequires:  python3-pytest
 
 %description -n python3-musicbrainzngs
 This library implements Python 3 webservice bindings for the
@@ -43,7 +43,7 @@ sed -i '1{\@^#!/usr/bin/env python@d}' examples/*.py
 
 %check
 rm -rf musicbrainzngs
-PYTHONPATH=%{buildroot}%{python3_sitelib} nosetests-%{python3_version}
+PYTHONPATH=%{buildroot}%{python3_sitelib} pytest
  
 %files -n python3-musicbrainzngs
 %license COPYING
@@ -51,5 +51,8 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} nosetests-%{python3_version}
 %{python3_sitelib}/*
 
 %changelog
+* Thu May 05 2022 YukariChiba <i@0x7f.cc> - 0.7.1-2
+- Replace nose since it's deprecated
+
 * Wed Jul 07 2021 xuyonghui <xuyonghui@kylinos.cn> - 0.7.1-1
 - Package init
